@@ -28,13 +28,13 @@ def make_backup():
 @task
 def pull_package():
     with cd('/tmp'):
-        run('rm -rf dist*/')
-        put('dist/', './')
+        put('app.tar.gz', './')
 
 
 @task
 def extract_package():
     with cd('/tmp'):
+        run('rm -rf dist*/')
         run('tar -xzf app.tar.gz')
 
 
