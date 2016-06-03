@@ -48,7 +48,7 @@ def fix_permissions():
 def copy_app():
     with cd('/product/apache2/demo44/'):
         sudo('rm -rf angular/ assets/ static/ index.html SDK/')
-        sudo('cp -r /tmp/dist/* .')
+        sudo('cp -r /tmp/dist/apache/* .')
 
 
 @task
