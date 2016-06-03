@@ -52,6 +52,12 @@ def copy_app():
 
 
 @task
+def copy_token():
+    with cd('/product/apache2/demo44/'):
+        sudo('cp SDK/lib/token/accenture-turner-dev.dat SDK/lib/token/domain_token.dat')
+
+
+@task
 def restart_apache():
     with cd('/product/apache2/bin/'):
         sudo('./apachectl restart', user='custapache')
@@ -74,6 +80,7 @@ def deploy():
     pull_package()
     extract_package()
     copy_app()
+    copy_token()
     fix_permissions()
     restart_apache()
     clear_cache()
