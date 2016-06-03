@@ -13,6 +13,8 @@ COPY fabfile.py ./
 COPY requirements.txt ./
 COPY turner_dev_sandbox ./
 
+COPY app.tar.gz ./
+
 RUN chmod +x start_deploy.sh
 
 RUN pip install -r requirements.txt
