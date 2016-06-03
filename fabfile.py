@@ -1,18 +1,17 @@
 import datetime
-import paramiko
 from fabric.api import sudo, put, task, run
 from fabric.context_managers import cd, settings
-
-#from varnish import VarnishManager
 
 
 @task
 def test_user():
     sudo('whoami', user='custapache')
 
+
 @task
 def test_timestamp():
     print('demo44_{}'.format(make_timestamp()))
+
 
 @task
 def make_timestamp():
@@ -29,20 +28,28 @@ def make_backup():
 @task
 def pull_package():
     with cd('/tmp'):
+        run('rm -rf dist*/')
         put('dist/', './')
 
 
 @task
+def extract_package():
+    with cd('/tmp'):
+        run('tar -xzf app.tar.gz')
+
+
+@task
 def fix_permissions():
-    with cd('/tmp/'):
-        sudo('chown -R custapache:apps dist/')
+    with cd('/product/apache2/'):
+        sudo('chown -R custapache:apps demo44/')
 
 
 @task
 def copy_app():
     with cd('/product/apache2/demo44/'):
-        sudo('rm -rf angular/ assets/ static/')
+        sudo('rm -rf angular/ assets/ static/ index.html SDK/')
         sudo('cp /tmp/dist/* .')
+
 
 @task
 def restart_apache():
@@ -50,20 +57,23 @@ def restart_apache():
         sudo('./apachectl restart', user='custapache')
 
 
-#@task
-#def clear_cache():
-#    manager = VarnishManager(('127.0.0.1', '6082'))
-#    manager.run('ban', 'req.url ~ "."')
-#    manager.close()
-
-
 @task
 def clear_cache():
     with cd('/product/varnish/bin/'), settings(prompts={'Type \'quit\' to close CLI session.': 'quit'}):
         run('./varnishadm && echo \"ban req.url ~ \".\"\"')
-        
+     
 
 @task
 def ls():
     with cd('/product/apache2/demo44/'):
         sudo('ls')
+
+
+@task
+def deploy():
+    pull_package()
+    extract_package()
+    copy_app()
+    fix_permissions()
+    restart_apache()
+    clear_cache()
