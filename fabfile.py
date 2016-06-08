@@ -34,8 +34,8 @@ def pull_package():
 @task
 def extract_package():
     with cd('/tmp'):
-        run('rm -rf dist*/')
-        run('tar -xzf app.tar.gz')
+        sudo('rm -rf dist*/')
+        sudo('tar -xzf app.tar.gz')
 
 
 @task
