@@ -66,7 +66,7 @@ def restart_apache():
 @task
 def clear_cache():
     with cd('/product/varnish/bin/'):
-        sudo('./varnishadm \'ban req.url \~ \"\.\"\'', user='custapache')
+        run('./varnishadm \'ban req.url ~ \".\"\'')
      
 
 @task
