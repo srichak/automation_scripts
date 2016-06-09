@@ -69,8 +69,9 @@ def restart_apache():
 
 @task
 def clear_cache():
-    with cd('/product/varnish/bin/'), settings(prompts={'Type \'quit\' to close CLI session.': 'quit'}):
-        run('./varnishadm && echo \"ban req.url ~ \".\"\"')
+    with cd('/product/varnish/bin/'):
+        run('./varnishadm \'ban req.url ~ \".\"\'')
+
      
 
 @task
