@@ -1,9 +1,9 @@
 import datetime
-import sys
+import os
 from fabric.api import sudo, put, task, run
 from fabric.context_managers import cd, settings
 
-initial_token_name = str(sys.argv[0])
+initial_token_name = os.getenv('INITIAL_TOKEN_NAME')
 
 @task
 def test_user():
