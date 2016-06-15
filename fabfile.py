@@ -1,7 +1,9 @@
 import datetime
+import sys
 from fabric.api import sudo, put, task, run
 from fabric.context_managers import cd, settings
 
+initial_token_name = str(sys.argv[0])
 
 @task
 def test_user():
@@ -54,7 +56,7 @@ def copy_app():
 @task
 def copy_token():
     with cd('/product/apache2/demo44/'):
-        sudo('cp SDK/lib/token/accenture-turner-dev.dat SDK/lib/token/domain_token.dat')
+        sudo('cp SDK/lib/token/'+initial_token_name+' SDK/lib/token/domain_token.dat')
 
 
 @task
