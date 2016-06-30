@@ -92,7 +92,6 @@ def deploy():
     extract_package()
     make_backup()
     copy_app()
-    copy_token()
     fix_permissions()
     restart_apache()
     clear_cache()
