@@ -90,3 +90,47 @@ def deploy():
     #fix_permissions()
     #restart_apache()
     #clear_cache()
+
+
+@task
+def make_backup_no_sudo():
+    with cd('/product/apache2/'):
+        run('tar -zcvf '+deployment_name+'_{}_bkp.tar.gz '+deployment_name+'/'.format(make_timestamp()))
+
+
+
+@task
+def extract_package_no_sudo():
+    with cd('/tmp'):
+        run('rm -rf dist*/')
+        run('tar -xzf '+deployment_package)
+
+
+@task
+def fix_permissions_no_sudo():
+    with cd('/product/apache2/'):
+        run('chown -R custapache:apps '+deployment_name+'/')
+
+
+@task
+def copy_app_no_sudo():
+    with cd('/product/apache2/'+deployment_name+'/'):
+        run('rm -rf angular/ assets/ static/ index.html SDK/')
+        run('cp -r /tmp/dist/apache/* .')
+
+
+@task
+def copy_conf_to_tmp_no_sudo():
+    with cd('/product/apache2/'+deployment_name+'/SDK/com/accenture/avs/sdk/'):
+        run('cp -r conf/ /tmp')
+        run('tar -zcvf conf_{}_bkp.tar.gz /tmp/conf/'.format(make_timestamp()))
+
+@task
+def restore_conf_from_tmp_no_sudo():
+    with cd('/product/apache2/'+deployment_name+'/SDK/com/accenture/avs/sdk/conf/'):
+        run('cp -r /tmp/conf/* .')
+
+@task
+def restart_apache_no_sudo():
+    with cd('/product/apache2/bin/'):
+        run('./apachectl restart')
