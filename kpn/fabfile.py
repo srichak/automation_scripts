@@ -91,6 +91,16 @@ def deploy():
     #restart_apache()
     #clear_cache()
 
+@task
+def deploy_no_sudo():
+    pull_package()
+    extract_package_no_sudo()
+    make_backup_no_sudo()
+    #copy_app()
+    #fix_permissions()
+    #restart_apache()
+    #clear_cache()
+
 
 @task
 def make_backup_no_sudo():
