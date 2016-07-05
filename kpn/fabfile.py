@@ -101,13 +101,13 @@ def deploy_no_sudo():
     #restart_apache()
     #clear_cache()
 
-
+tar_string = 'tar -zcvf '+deployment_name+'_{}_bkp.tar.gz '+deployment_name+'/'
 @task
 def make_backup_no_sudo():
     with cd('/product/apache2/'):
         run(tar_string.format(make_timestamp()))
 
-	tar_string = 'tar -zcvf '+deployment_name+'_{}_bkp.tar.gz '+deployment_name+'/'
+	
 
 @task
 def extract_package_no_sudo():
