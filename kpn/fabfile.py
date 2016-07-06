@@ -97,10 +97,10 @@ def deploy_no_sudo():
     extract_package_no_sudo()
     make_backup_no_sudo()
     copy_json_to_tmp_no_sudo
-    #copy_app_no_sudo()
+    copy_app_no_sudo()
     #fix_permissions()
-    #restart_apache_no_sudo()
-    #clear_cache_no_sudo()
+    restart_apache_no_sudo()
+    clear_cache_no_sudo()
 
 tar_string = 'tar -zcvf '+deployment_name+'_{}_bkp.tar.gz '+deployment_name+'/'
 @task
