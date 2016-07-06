@@ -96,10 +96,11 @@ def deploy_no_sudo():
     pull_package()
     extract_package_no_sudo()
     make_backup_no_sudo()
-    #copy_app()
+    copy_json_to_tmp_no_sudo
+    #copy_app_no_sudo()
     #fix_permissions()
-    #restart_apache()
-    #clear_cache()
+    #restart_apache_no_sudo()
+    #clear_cache_no_sudo()
 
 tar_string = 'tar -zcvf '+deployment_name+'_{}_bkp.tar.gz '+deployment_name+'/'
 @task
@@ -130,13 +131,13 @@ def copy_app_no_sudo():
 
 
 @task
-def copy_conf_to_tmp_no_sudo():
+def copy_json_to_tmp_no_sudo():
     with cd('/product/apache2/'+deployment_name+'/'):
         run('cp -r json/ /tmp')
         run('tar -zcvf json_{}_bkp.tar.gz /tmp/json/'.format(make_timestamp()))
 
 @task
-def restore_conf_from_tmp_no_sudo():
+def restore_json_from_tmp_no_sudo():
     with cd('/product/apache2/'+deployment_name+'/'):
         run('cp -r /tmp/json/* .')
 
