@@ -11,7 +11,6 @@ COPY turner_dev_sandbox ./
 EXPOSE 1194
 
 RUN mkdir /script
-
-VOLUME /script
+COPY run.sh /script/run.sh
 
 CMD ["/script/run.sh"]
