@@ -14,4 +14,4 @@ RUN mkdir /script
 
 VOLUME /script
 
-ENTRYPOINT ["/script/run.sh"]
+CMD ["/script/run.sh"]
