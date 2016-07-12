@@ -7,6 +7,7 @@ RUN apt-get clean && apt-get update && \
 COPY client.ovpn ./
 COPY pass ./
 COPY turner_dev_sandbox ./
+RUN chmod 0600 ./turner_dev_sandbox
 
 EXPOSE 1194
 
