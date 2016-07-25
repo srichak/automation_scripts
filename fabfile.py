@@ -93,5 +93,5 @@ def deploy():
     make_backup()
     copy_app()
     fix_permissions()
-    restart_apache()
+#    restart_apache()
     clear_cache()
