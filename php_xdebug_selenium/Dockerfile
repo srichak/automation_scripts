@@ -3,7 +3,8 @@ MAINTAINER dmitrii.kvaskov@accenture.com
 
 
 # Install developer dependencies
-RUN apt-get update -yqq && apt-get install -y libsqlite3-dev libxml2-dev libicu-dev libfreetype6-dev libmcrypt-dev libjpeg62-turbo-dev libpng12-dev git libcurl4-gnutls-dev libbz2-dev libssl-dev -yqq
+RUN apt-get update -yqq && apt-get install -y libsqlite3-dev libxml2-dev libicu-dev libfreetype6-dev libmcrypt-dev libjpeg62-turbo-dev libpng12-dev git libcurl4-gnutls-dev libbz2-dev libssl-dev -yqq python python-dev python-distribute python-pip && \
+    pip install selenium
 
 # Install php extensions
 RUN docker-php-ext-install pdo_mysql
@@ -37,5 +38,5 @@ RUN curl -sS https://getcomposer.org/installer | php
 RUN mv composer.phar /usr/local/bin/composer
 RUN mkdir /var/www/html/pctv-selenium-cucumber
 COPY pctv-selenium-cucumber pctv-selenium-cucumber/
-COPY entrypoint.sh /entrypoint.sh
-ENTRYPOINT ["/entrypoint.sh"]
+#COPY entrypoint.sh /entrypoint.sh
+#ENTRYPOINT ["/entrypoint.sh"]
