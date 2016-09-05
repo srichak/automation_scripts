@@ -5,5 +5,5 @@ RUN apt-get clean && apt-get update && \
 	pip install sonarqube-api
 	
 COPY sonar_get_data.sh /
-
+CMD chmod +x sonar_get_data.sh
 ENTRYPOINT /sonar_get_data.sh
