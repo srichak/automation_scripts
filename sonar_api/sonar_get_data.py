@@ -60,6 +60,6 @@ print "Technical Debt Ratio: " + techDebtRatio
 print "Total Lines of Code: " + totalLines
 print "Total non commenting lines of code: " + totalNCLOC
 
-file = open('newfile.html', "w+")
-file.write("<!DOCTYPE html>\n <html> <body> \n <p> Test"+ totalIssues +"  </p> \n </body> </html>")
+file = open('report.html', "a+")
+file.write("<p> Test "+ totalIssues +"  </p>")
 file.close()
