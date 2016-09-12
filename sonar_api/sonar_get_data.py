@@ -60,12 +60,28 @@ print "Technical Debt Ratio: " + techDebtRatio
 print "Total Lines of Code: " + totalLines
 print "Total non commenting lines of code: " + totalNCLOC
 
-fileInput = open('report.html', "r")
+fileInput = open('report.html', "rb")
 fileOutput = open('report_new.html',"wb")
 for line in fileInput.readlines():
     if '<div class="layout">' in line:
         fileOutput.write(line + '\n<p> Teeeeeeeest: ' + totalIssues + '</p>\n')
         fileOutput.write('<p> More text...</p>\n')
+        fileOutput.write('<h1>SonarQube Results</h1>\n')
+        fileOutput.write('<table border="0" style="width: 100%;">\n')
+        fileOutput.write('<tr>\n')
+        fileOutput.write('<td>\n')
+	    fileOutput.write('<h2>Summary</h2>\n')
+        fileOutput.write('<div id="stepContainerSummary"\n'>)
+        fileOutput.write('<table border="0">\n')
+        fileOutput.write('<tr>\n')
+        fileOutput.write('<td width="250" class="scenarioSuccess">Total issues: </td>\n')
+        fileOutput.write('<td class="scenarioSuccessValue"><strong>'+ totalIssues +'</strong></td>\n')
+        fileOutput.write('</tr>\n')
+        fileOutput.write('</table>\n')
+        fileOutput.write('</div>\n')
+        fileOutput.write('</td>\n')
+        fileOutput.write('</tr>\n')
+        fileOutput.write('</table>\n')
     else:
         fileOutput.write(line)
 fileInput.close()
