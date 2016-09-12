@@ -21,15 +21,16 @@ metrics = [
 ]
 
 proj = next(h.get_resources_metrics(resource='org.turner.pctv.application', metrics=metrics))
-#proj = next(h.get_metrics(fields='violations'))
-print proj
-print ('\n')
-print proj.keys()
-print ('\n')
+
+#print proj
+#print ('\n')
+#print proj.keys()
+#print ('\n')
 msrList = proj["msr"]
-print ('\n')
-print msrList
-print ('\n')
+#print ('\n')
+#print msrList
+#print ('\n')
+
 for d in msrList:
     if d['key'] == 'violations':
         totalIssues = d['frmt_val']
@@ -64,8 +65,6 @@ fileInput = open('report.html', "rb")
 fileOutput = open('report_new.html',"wb")
 for line in fileInput.readlines():
     if '<div class="layout">' in line:
-        #fileOutput.write(line + '\n<p> Teeeeeeeest: ' + totalIssues + '</p>\n')
-        #fileOutput.write('<p> More text...</p>\n')
         fileOutput.write(line + '\n')
         fileOutput.write('<h1>SonarQube Results</h1>\n')
         fileOutput.write('<table border="0" style="width: 100%;">\n')
@@ -77,6 +76,38 @@ for line in fileInput.readlines():
         fileOutput.write('<tr>\n')
         fileOutput.write('<td width="250" class="scenarioSuccess">Total issues: </td>\n')
         fileOutput.write('<td class="scenarioSuccessValue"><strong>'+ totalIssues +'</strong></td>\n')
+        fileOutput.write('</tr>\n')
+        fileOutput.write('<tr>\n')
+        fileOutput.write('<td class="scenarioSuccess">Blocker issues: </td>\n')
+        fileOutput.write('<td class="scenarioSuccessValue"><strong>'+ blockerIssues +'</strong></td>\n')
+        fileOutput.write('</tr>\n')
+        fileOutput.write('<tr>\n')
+        fileOutput.write('<td class="scenarioSuccess">Critical issues: </td>\n')
+        fileOutput.write('<td class="scenarioSuccessValue"><strong>'+ criticalIssues +'</strong></td>\n')
+        fileOutput.write('</tr>\n')
+        fileOutput.write('<tr>\n')
+        fileOutput.write('<td class="scenarioSuccess">Major issues: </td>\n')
+        fileOutput.write('<td class="scenarioSuccessValue"><strong>'+ majorIssues +'</strong></td>\n')
+        fileOutput.write('</tr>\n')
+        fileOutput.write('<tr>\n')
+        fileOutput.write('<td class="scenarioSuccess">Minor issues: </td>\n')
+        fileOutput.write('<td class="scenarioSuccessValue"><strong>'+ minorIssues +'</strong></td>\n')
+        fileOutput.write('</tr>\n')
+        fileOutput.write('<tr>\n')
+        fileOutput.write('<td class="scenarioSuccess">Technical debt: </td>\n')
+        fileOutput.write('<td class="scenarioSuccessValue"><strong>'+ techDebt +'</strong></td>\n')
+        fileOutput.write('</tr>\n')
+        fileOutput.write('<tr>\n')
+        fileOutput.write('<td class="scenarioSuccess">Technical debt ratio: </td>\n')
+        fileOutput.write('<td class="scenarioSuccessValue"><strong>'+ techDebtRatio +'</strong></td>\n')
+        fileOutput.write('</tr>\n')
+        fileOutput.write('<tr>\n')
+        fileOutput.write('<td class="scenarioSuccess">Total lines of code: </td>\n')
+        fileOutput.write('<td class="scenarioSuccessValue"><strong>'+ totalLines +'</strong></td>\n')
+        fileOutput.write('</tr>\n')
+        fileOutput.write('<tr>\n')
+        fileOutput.write('<td class="scenarioSuccess">Non commenting lines of code: </td>\n')
+        fileOutput.write('<td class="scenarioSuccessValue"><strong>'+ totalNCLOC +'</strong></td>\n')
         fileOutput.write('</tr>\n')
         fileOutput.write('</table>\n')
         fileOutput.write('</div>\n')
