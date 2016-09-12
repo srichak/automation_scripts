@@ -88,6 +88,7 @@ fileOutput = open('report_new.html',"wb")
 for line in fileInput.readlines():
     if '<div class="layout">' in line:
         fileOutput.write(line + '\n')
+        fileOutput.write('<img src="TestRunner.png" alt="Test Runner pic">\n')
         fileOutput.write('<h1>SonarQube Results</h1>\n')
         fileOutput.write('<table border="0" style="width: 100%;">\n')
         fileOutput.write('<tr>\n')
