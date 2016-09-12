@@ -64,7 +64,7 @@ for d in msrList:
         fileComplexity = d['frmt_val']
     if d['key'] == 'duplicated_lines_density':
         duplicationsRatio = d['frmt_val']
-    if d['key'] == 'ducplicated_lines':
+    if d['key'] == 'duplicated_lines':
         duplicatedLines = d['frmt_val']
 
 print "Total issues: " + totalIssues
