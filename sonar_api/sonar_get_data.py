@@ -13,11 +13,15 @@ for project in h.get_resources_full_data(metrics=['coverage', 'violations']):
 metrics = [
 # Violations
 'violations', 'blocker_violations', 'critical_violations',
-'major_violations', 'minor_violations',
+'major_violations', 'minor_violations', 'info_violations',
 # Lines of Code
 'lines',  'ncloc',
 # SQUALE aka Technical Debt
-'sqale_index', 'sqale_debt_ratio'
+'sqale_index', 'sqale_debt_ratio',
+# Complexity
+'complexity', 'function_complexity', 'file_complexity',
+# Duplications
+'duplicated_lines_density', 'duplicated_lines'
 ]
 
 proj = next(h.get_resources_metrics(resource='org.turner.pctv.application', metrics=metrics))
