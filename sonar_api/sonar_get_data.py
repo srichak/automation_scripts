@@ -42,6 +42,8 @@ for d in msrList:
         majorIssues = d['frmt_val']
     if d['key'] == 'minor_violations':
         minorIssues = d['frmt_val']
+    if d['key'] == 'info_violations':
+        infoIssues = d['frmt_val']
     if d['key'] == 'sqale_index':
         techDebt = d['frmt_val']
     if d['key'] == 'sqale_debt_ratio':
@@ -50,16 +52,32 @@ for d in msrList:
         totalLines = d['frmt_val']
     if d['key'] == 'ncloc':
         totalNCLOC = d['frmt_val']
+    if d['key'] == 'complexity':
+        complexity = d['frmt_val']
+    if d['key'] == 'function_complexity':
+        functionComplexity = d['frmt_val']
+    if d['key'] == 'file_complexity':
+        fileComplexity = d['frmt_val']
+    if d['key'] == 'duplicated_lines_density':
+        duplicationsRatio = d['frmt_val']
+    if d['key'] == 'ducplicated_lines':
+        duplicatedLines = d['frmt_val']
 
 print "Total issues: " + totalIssues
 print "Blocker Issues: " + blockerIssues
 print "Critical Issues: " + criticalIssues
 print "Major Issues: " + majorIssues
 print "Minor Issues: "  + minorIssues
+print "Info Issues: "  + infoIssues
 print "Techical Debt: " + techDebt
 print "Technical Debt Ratio: " + techDebtRatio
 print "Total Lines of Code: " + totalLines
 print "Total non commenting lines of code: " + totalNCLOC
+print "Total Complexity: " + complexity
+print "Function complexity: " + functionComplexity
+print "File complexity: " + fileComplexity
+print "Duplications ratio: " + duplicationsRatio
+print "Duplicated lines: " + duplicatedLines
 
 fileInput = open('report.html', "rb")
 fileOutput = open('report_new.html',"wb")
@@ -94,6 +112,10 @@ for line in fileInput.readlines():
         fileOutput.write('<td class="scenarioSuccessValue"><strong>'+ minorIssues +'</strong></td>\n')
         fileOutput.write('</tr>\n')
         fileOutput.write('<tr>\n')
+        fileOutput.write('<td class="scenarioSuccess">Info issues: </td>\n')
+        fileOutput.write('<td class="scenarioSuccessValue"><strong>'+ infoIssues +'</strong></td>\n')
+        fileOutput.write('</tr>\n')
+        fileOutput.write('<tr>\n')
         fileOutput.write('<td class="scenarioSuccess">Technical debt: </td>\n')
         fileOutput.write('<td class="scenarioSuccessValue"><strong>'+ techDebt +'</strong></td>\n')
         fileOutput.write('</tr>\n')
@@ -108,6 +130,26 @@ for line in fileInput.readlines():
         fileOutput.write('<tr>\n')
         fileOutput.write('<td class="scenarioSuccess">Non commenting lines of code: </td>\n')
         fileOutput.write('<td class="scenarioSuccessValue"><strong>'+ totalNCLOC +'</strong></td>\n')
+        fileOutput.write('</tr>\n')
+        fileOutput.write('<tr>\n')
+        fileOutput.write('<td class="scenarioSuccess">Total complexity: </td>\n')
+        fileOutput.write('<td class="scenarioSuccessValue"><strong>'+ complexity +'</strong></td>\n')
+        fileOutput.write('</tr>\n')
+        fileOutput.write('<tr>\n')
+        fileOutput.write('<td class="scenarioSuccess">Function complexity: </td>\n')
+        fileOutput.write('<td class="scenarioSuccessValue"><strong>'+ functionComplexity +'/function</strong></td>\n')
+        fileOutput.write('</tr>\n')
+        fileOutput.write('<tr>\n')
+        fileOutput.write('<td class="scenarioSuccess">File complexity: </td>\n')
+        fileOutput.write('<td class="scenarioSuccessValue"><strong>'+ fileComplexity +'/file</strong></td>\n')
+        fileOutput.write('</tr>\n')
+        fileOutput.write('<tr>\n')
+        fileOutput.write('<td class="scenarioSuccess">Duplications ratio: </td>\n')
+        fileOutput.write('<td class="scenarioSuccessValue"><strong>'+ duplicationsRatio +'</strong></td>\n')
+        fileOutput.write('</tr>\n')
+        fileOutput.write('<tr>\n')
+        fileOutput.write('<td class="scenarioSuccess">Duplicated lines: </td>\n')
+        fileOutput.write('<td class="scenarioSuccessValue"><strong>'+ duplicatedLines +'</strong></td>\n')
         fileOutput.write('</tr>\n')
         fileOutput.write('</table>\n')
         fileOutput.write('</div>\n')
