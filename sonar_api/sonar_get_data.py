@@ -60,6 +60,13 @@ print "Technical Debt Ratio: " + techDebtRatio
 print "Total Lines of Code: " + totalLines
 print "Total non commenting lines of code: " + totalNCLOC
 
-file = open('report.html', "a+")
-file.write("<p> Test "+ totalIssues +"  </p>")
-file.close()
+fileInput = open('report.html', "r")
+fileOutput = open('report_new.html',"wb")
+for line in fileInput.readlines():
+    if '<div class="layout">' in line:
+        fileOutput.write(line + '\n<p> Teeeeeeeest: ' + totalIssues + '</p>\n')
+        fileOutput.write('<p> More text...</p>\n')
+    else:
+        fileOutput.write(line)
+fileInput.close()
+fileOutput.close()
