@@ -66,6 +66,7 @@ for line in fileInput.readlines():
     if '<div class="layout">' in line:
         #fileOutput.write(line + '\n<p> Teeeeeeeest: ' + totalIssues + '</p>\n')
         #fileOutput.write('<p> More text...</p>\n')
+        fileOutput.write(line + '\n')
         fileOutput.write('<h1>SonarQube Results</h1>\n')
         fileOutput.write('<table border="0" style="width: 100%;">\n')
         fileOutput.write('<tr>\n')
