@@ -71,7 +71,7 @@ for line in fileInput.readlines():
         fileOutput.write('<tr>\n')
         fileOutput.write('<td>\n')
         fileOutput.write('<h2>Summary</h2>\n')
-        fileOutput.write('<div id="stepContainerSummary"\n>')
+        fileOutput.write('<div id="stepContainerSummary">\n')
         fileOutput.write('<table border="0">\n')
         fileOutput.write('<tr>\n')
         fileOutput.write('<td width="250" class="scenarioSuccess">Total issues: </td>\n')
