@@ -1,8 +1,8 @@
 from sonarqube_api import SonarAPIHandler
 import os
 
-username = os.environ['USERNAME']
-password = os.environ['PASSWORD']
+username = os.environ.get('USERNAME')
+password = os.environ.get('PASSWORD')
 
 #self, host, port, user, password, base_path, token
 h = SonarAPIHandler(user=username, password=password,
