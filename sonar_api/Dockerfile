@@ -8,6 +8,7 @@ RUN apt-get clean && apt-get update && \
 
 COPY sonar_get_data.py /
 COPY report.html /
+COPY result.txt /
 
 CMD chmod +x sonar_get_data.py
 RUN sed -i "77s/.*/        return '{}{}{}'.format(self._host, self._base_path, endpoint)/" /usr/local/lib/python2.7/dist-packages/sonarqube_api/api.py

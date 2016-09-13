@@ -4,12 +4,8 @@ from sonarqube_api import SonarAPIHandler
 h = SonarAPIHandler(user='k.bernatovics', password='mae6oi6O',
 host='https://avsdevops.accenture.com/sonar')
 testConn = h.validate_authentication();
-print testConn
-"""
-for project in h.get_resources_full_data(metrics=['coverage', 'violations']):
-    # do something with project data...
-    print project
-"""
+#print testConn
+
 metrics = [
 # Violations
 'violations', 'blocker_violations', 'critical_violations',
@@ -83,12 +79,75 @@ print "File complexity: " + fileComplexity
 print "Duplications ratio: " + duplicationsRatio
 print "Duplicated lines: " + duplicatedLines
 
+kpiInput = open('result.txt', "rb")
+for line in kpiInput.readlines():
+    if 'Tested KPIs' in line:
+        testedKPIs = line.split(':',1)[1] #remove chars before ':'
+        testedKPIs = testedKPIs.rstrip() #remove newline chars
+    if 'Passed KPIs' in line:
+        passedKPIs = line.split(':',1)[1]
+        passedKPIs = passedKPIs.rstrip()
+    if 'No Data KPIs' in line:
+        noDataKPIs = line.split(':',1)[1]
+        noDataKPIs = noDataKPIs.rstrip()
+    if 'Failed KPIs' in line:
+        failedKPIs = line.split(':',1)[1]
+        failedKPIs = failedKPIs.rstrip()
+    if 'Test Result' in line:
+        KPIresult = line.split(':',1)[1]
+        KPIresult = KPIresult.rstrip()
+kpiInput.close()
+
+if 'FAILED' in KPIresult:
+    scenarioType = 'scenarioFailed'
+else:
+    scenarioType = 'scenarioSuccess'
+
+print "Tested KPIs: " + testedKPIs
+print "Passed KPIs: " + passedKPIs
+print "No Data KPIs: " + noDataKPIs
+print "Failed KPIs: " + failedKPIs
+print "Test Result: " + KPIresult
+
 fileInput = open('report.html', "rb")
 fileOutput = open('report_new.html',"wb")
 for line in fileInput.readlines():
     if '<div class="layout">' in line:
         fileOutput.write(line + '\n')
-        fileOutput.write('<img src="TestRunner.png" alt="Test Runner pic">\n')
+        fileOutput.write('<h1>KPI test results</h1>\n')
+        fileOutput.write('<table border="0" style="width: 100%;">\n')
+        fileOutput.write('<tr>\n')
+        fileOutput.write('<td>\n')
+        fileOutput.write('<h2>Summary</h2>\n')
+        fileOutput.write('<div id="stepContainerSummary">\n')
+        fileOutput.write('<table border="0">\n')
+        fileOutput.write('<tr>\n')
+        fileOutput.write('<td width="250" class="scenarioSuccess">Tested KPIs: </td>\n')
+        fileOutput.write('<td class="scenarioSuccessValue"><strong>'+ testedKPIs +'</strong></td>\n')
+        fileOutput.write('</tr>\n')
+        fileOutput.write('<tr>\n')
+        fileOutput.write('<td class="scenarioSuccess">Passed KPIs: </td>\n')
+        fileOutput.write('<td class="scenarioSuccessValue"><strong>'+ passedKPIs +'</strong></td>\n')
+        fileOutput.write('</tr>\n')
+        fileOutput.write('<tr>\n')
+        fileOutput.write('<td class="scenarioSuccess">No Data KPIs: </td>\n')
+        fileOutput.write('<td class="scenarioSuccessValue"><strong>'+ noDataKPIs +'</strong></td>\n')
+        fileOutput.write('</tr>\n')
+        fileOutput.write('<tr>\n')
+        fileOutput.write('<td class="scenarioSuccess">Failed KPIs: </td>\n')
+        fileOutput.write('<td class="scenarioSuccessValue"><strong>'+ failedKPIs +'</strong></td>\n')
+        fileOutput.write('</tr>\n')
+        fileOutput.write('<tr>\n')
+        fileOutput.write('<td class="'+scenarioType+'">Test result: </td>\n')
+        fileOutput.write('<td class="scenarioSuccessValue"><strong>'+ KPIresult +'</strong></td>\n')
+        fileOutput.write('</tr>\n')
+        fileOutput.write('</table>\n')
+        fileOutput.write('</div>\n')
+        fileOutput.write('</td>\n')
+        fileOutput.write('</tr>\n')
+        fileOutput.write('</table>\n')
+        fileOutput.write('<h1>Test Runner Results</h1>\n')
+        fileOutput.write('<img src="TestRunner.png" alt="Test Runner screenshot">\n')
         fileOutput.write('<h1>SonarQube Results</h1>\n')
         fileOutput.write('<table border="0" style="width: 100%;">\n')
         fileOutput.write('<tr>\n')
