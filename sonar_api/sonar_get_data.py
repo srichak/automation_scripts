@@ -1,13 +1,7 @@
 from sonarqube_api import SonarAPIHandler
-import os
-
-username = os.environ.get('USERNAME')
-password = os.environ.get('PASSWORD')
-print username
-print password
 
 #self, host, port, user, password, base_path, token
-h = SonarAPIHandler(user=username, password=password,
+h = SonarAPIHandler(user='k.bernatovics', password='mae6oi6O',
 host='https://avsdevops.accenture.com/sonar')
 testConn = h.validate_authentication();
 #print testConn
