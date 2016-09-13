@@ -3,6 +3,8 @@ import os
 
 username = os.environ.get('USERNAME')
 password = os.environ.get('PASSWORD')
+print username
+print password
 
 #self, host, port, user, password, base_path, token
 h = SonarAPIHandler(user=username, password=password,
