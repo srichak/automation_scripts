@@ -114,7 +114,7 @@ fileOutput = open('report_new.html',"wb")
 for line in fileInput.readlines():
     if '<div class="layout">' in line:
         fileOutput.write(line + '\n')
-        fileOutput.write('<h1>KPI test results</h1>\n')
+        fileOutput.write('<h1>KPI Test Results</h1>\n')
         fileOutput.write('<table border="0" style="width: 100%;">\n')
         fileOutput.write('<tr>\n')
         fileOutput.write('<td>\n')
