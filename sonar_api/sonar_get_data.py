@@ -1,6 +1,7 @@
 from sonarqube_api import SonarAPIHandler
 import os
 
+print "testing123"
 username = os.environ.get('USERNAME')
 password = os.environ.get('PASSWORD')
 print username
