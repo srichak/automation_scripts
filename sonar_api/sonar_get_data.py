@@ -1,11 +1,10 @@
 from sonarqube_api import SonarAPIHandler
 import os
 
-print "testing123"
 username = os.environ.get('USERNAME')
 password = os.environ.get('PASSWORD')
-print username
-print password
+#print username
+#print password
 
 #self, host, port, user, password, base_path, token
 h = SonarAPIHandler(user=username, password=password,
@@ -29,14 +28,7 @@ metrics = [
 
 proj = next(h.get_resources_metrics(resource='org.turner.pctv.application', metrics=metrics))
 
-#print proj
-#print ('\n')
-#print proj.keys()
-#print ('\n')
 msrList = proj["msr"]
-#print ('\n')
-#print msrList
-#print ('\n')
 
 for d in msrList:
     if d['key'] == 'violations':

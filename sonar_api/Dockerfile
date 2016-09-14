@@ -15,6 +15,4 @@ RUN sed -i "77s/.*/        return '{}{}{}'.format(self._host, self._base_path, e
 CMD python sonar_get_data.py
 #CMD /bin/sh -c "while true; do echo hello world; sleep 1; done"
 
-#ENTRYPOINT /usr/bin/top
-#CMD export-sonarqube-rules --host=https://avsdevops.accenture.com/sonar --user=k.bernatovics --password=mae6oi6O
 #ENTRYPOINT /sonar_get_data.py
