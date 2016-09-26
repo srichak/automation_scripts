@@ -47,25 +47,25 @@ def fix_permissions():
 
 @task
 def copy_app():
-    with cd('/product/apache2/demo44/'):
+    with cd('/product/apache2/htdocs/'):
         sudo('rm -rf angular/ assets/ static/ index.html SDK/')
         sudo('cp -r /tmp/dist/apache/* .')
 
 
 @task
 def copy_token():
-    with cd('/product/apache2/demo44/'):
+    with cd('/product/apache2/htdocs/'):
         sudo('cp SDK/lib/token/'+initial_token_name+' SDK/lib/token/domain_token.dat')
 
 @task
 def copy_conf_to_tmp():
-    with cd('/product/apache2/demo44/SDK/com/accenture/avs/sdk/'):
+    with cd('/product/apache2/htdocs/SDK/com/accenture/avs/sdk/'):
         sudo('cp -r conf/ /tmp')
         sudo('tar -zcvf conf_{}_bkp.tar.gz /tmp/conf/'.format(make_timestamp()))
 
 @task
 def restore_conf_from_tmp():
-    with cd('/product/apache2/demo44/SDK/com/accenture/avs/sdk/conf/'):
+    with cd('/product/apache2/htdocs/SDK/com/accenture/avs/sdk/conf/'):
         sudo('cp -r /tmp/conf/* .')
 
 @task
@@ -82,7 +82,7 @@ def clear_cache():
 
 @task
 def ls():
-    with cd('/product/apache2/demo44/'):
+    with cd('/product/apache2/htdocs/'):
         sudo('ls')
 
 
