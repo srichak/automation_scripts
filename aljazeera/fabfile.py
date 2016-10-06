@@ -29,7 +29,7 @@ def make_backup():
 @task
 def pull_package():
     with cd('/tmp'):
-        put('app.tar.gz', './')
+        put('app.tar.gz', '~/app.tar.gz')
 
 
 @task
