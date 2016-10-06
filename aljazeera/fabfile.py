@@ -12,7 +12,7 @@ def test_user():
 
 @task
 def test_timestamp():
-    print('demo44_{}'.format(make_timestamp()))
+    print('htdocs_{}'.format(make_timestamp()))
 
 
 @task
@@ -23,7 +23,7 @@ def make_timestamp():
 @task
 def make_backup():
     with cd('/product/apache2/'):
-        sudo('tar -zcvf demo44_{}_test.tar.gz demo44/'.format(make_timestamp()))
+        sudo('tar -zcvf htdocs_{}_test.tar.gz htdocs/'.format(make_timestamp()))
 
 
 @task
@@ -42,7 +42,7 @@ def extract_package():
 @task
 def fix_permissions():
     with cd('/product/apache2/'):
-        sudo('chown -R custapache:apps demo44/')
+        sudo('chown -R custapache:apps htdocs/')
 
 
 @task
