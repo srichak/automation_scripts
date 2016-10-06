@@ -29,6 +29,7 @@ def make_backup():
 @task
 def pull_package():
     with cd('/tmp'):
+        run('ls -la')
         put('app.tar.gz', './')
 
 
@@ -48,7 +49,7 @@ def fix_permissions():
 @task
 def copy_app():
     with cd('/product/apache2/htdocs/'):
-        sudo('rm -rf angular/ assets/ static/ index.html SDK/')
+        sudo('rm -rf /product/apache2/htdocs/*')
         sudo('cp -r /tmp/dist/apache/* .')
 
 
