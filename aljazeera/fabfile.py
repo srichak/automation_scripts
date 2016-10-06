@@ -29,7 +29,6 @@ def make_backup():
 @task
 def pull_package():
     with cd('/tmp'):
-        run('ls -la')
         put('app.tar.gz', './')
 
 
