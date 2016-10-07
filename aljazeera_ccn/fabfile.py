@@ -64,19 +64,9 @@ def copy_conf_to_tmp():
         sudo('tar -zcvf conf_{}_bkp.tar.gz /tmp/conf/'.format(make_timestamp()))
 
 @task
-def copy_robots_to_tmp():
-    with cd('/product/apache2/ccn/'):
-        sudo('cp -r robots.txt /tmp')
-
-@task
 def restore_conf_from_tmp():
     with cd('/product/apache2/htdocs/SDK/com/accenture/avs/sdk/conf/'):
         sudo('cp -r /tmp/conf/* .')
-
-@task
-def restore_robots_from_tmp():
-    with cd('/product/apache2/ccn/'):
-        sudo('cp -r /tmp/robots.txt .')        
 
 @task
 def restart_apache():
@@ -100,8 +90,7 @@ def ls():
 def deploy():
     pull_package()
     extract_package()
-    make_backup()
-    copy_robots_to_tmp()
+    make_backup()    
     copy_app()
     fix_permissions()
 #    restart_apache()
