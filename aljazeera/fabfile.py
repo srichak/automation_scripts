@@ -47,8 +47,16 @@ def fix_permissions():
 
 @task
 def copy_app():
-    with cd('/product/apache2/htdocs/'):
-        sudo('rm -rf /product/apache2/htdocs/*')
+    with cd('/product/apache2/htdocs/'):        
+        sudo('rm -rf /product/apache2/htdocs/*.js')
+        sudo('rm -rf /product/apache2/htdocs/*.html')
+        sudo('rm -rf /product/apache2/htdocs/build/*')
+        sudo('rm -rf /product/apache2/htdocs/components/*')
+        sudo('rm -rf /product/apache2/htdocs/directives/*')
+        sudo('rm -rf /product/apache2/htdocs/fonts/*')
+        sudo('rm -rf /product/apache2/htdocs/img/*')
+        sudo('rm -rf /product/apache2/htdocs/SDK/*')
+        sudo('rm -rf /product/apache2/htdocs/templates/*')
         sudo('cp -r /tmp/dist/apache/* .')
 
 
