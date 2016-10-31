@@ -12,7 +12,6 @@ COPY fabfile.py ./
 COPY requirements.txt ./
 COPY kpn_ssh_key ./
 
-COPY dist.tar.gz ./
 
 RUN chmod +x start_deploy.sh
 
