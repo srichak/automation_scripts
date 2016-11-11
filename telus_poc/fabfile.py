@@ -1,7 +1,8 @@
 import datetime
 import os
+
 from fabric.api import sudo, put, task, run
-from fabric.context_managers import cd, settings
+from fabric.context_managers import cd
 
 initial_token_name = os.getenv('INITIAL_TOKEN_NAME')
 
@@ -13,7 +14,7 @@ def test_user():
 
 @task
 def test_timestamp():
-    print('htdocs_{}'.format(make_timestamp()))
+    print('demo44_{}'.format(make_timestamp()))
 
 
 @task
@@ -24,13 +25,13 @@ def make_timestamp():
 @task
 def make_backup():
     with cd('/product/apache2/'):
-        sudo('tar -zcvf htdocs_{}_test.tar.gz htdocs/'.format(make_timestamp()))
+        sudo('tar -zcvf demo44_{}_test.tar.gz demo44/'.format(make_timestamp()))
 
 
 @task
 def pull_package():
     with cd('/tmp'):
-        put('app.tar.gz', '/tmp/app.tar.gz')
+        put('app.tar.gz', './')
 
 
 @task
@@ -43,41 +44,33 @@ def extract_package():
 @task
 def fix_permissions():
     with cd('/product/apache2/'):
-        sudo('chown -R custapache:apps htdocs/')
+        sudo('chown -R custapache:apps demo44/')
 
 
 @task
 def copy_app():
-    with cd('/product/apache2/htdocs/'):
-        sudo('rm -rf /product/apache2/htdocs/*.js')
-        sudo('rm -rf /product/apache2/htdocs/*.html')
-        sudo('rm -rf /product/apache2/htdocs/build/*')
-        sudo('rm -rf /product/apache2/htdocs/components/*')
-        sudo('rm -rf /product/apache2/htdocs/directives/*')
-        sudo('rm -rf /product/apache2/htdocs/fonts/*')
-        sudo('rm -rf /product/apache2/htdocs/img/*')
-        sudo('rm -rf /product/apache2/htdocs/SDK/*')
-        sudo('rm -rf /product/apache2/htdocs/templates/*')
+    with cd('/product/apache2/demo44/'):
+        sudo('rm -rf angular/ assets/ static/ index.html SDK/')
         sudo('cp -r /tmp/dist/apache/* .')
 
 
 @task
 def copy_token():
-    with cd('/product/apache2/htdocs/'):
+    with cd('/product/apache2/demo44/'):
         sudo('cp SDK/lib/token/' + initial_token_name +
              ' SDK/lib/token/domain_token.dat')
 
 
 @task
 def copy_conf_to_tmp():
-    with cd('/product/apache2/htdocs/SDK/com/accenture/avs/sdk/'):
+    with cd('/product/apache2/demo44/SDK/com/accenture/avs/sdk/'):
         sudo('cp -r conf/ /tmp')
         sudo('tar -zcvf conf_{}_bkp.tar.gz /tmp/conf/'.format(make_timestamp()))
 
 
 @task
 def restore_conf_from_tmp():
-    with cd('/product/apache2/htdocs/SDK/com/accenture/avs/sdk/conf/'):
+    with cd('/product/apache2/demo44/SDK/com/accenture/avs/sdk/conf/'):
         sudo('cp -r /tmp/conf/* .')
 
 
@@ -95,7 +88,7 @@ def clear_cache():
 
 @task
 def ls():
-    with cd('/product/apache2/htdocs/'):
+    with cd('/product/apache2/demo44/'):
         sudo('ls')
 
 
