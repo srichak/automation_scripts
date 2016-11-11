@@ -56,10 +56,12 @@ def copy_token():
     with cd('/product/apache2/demo44/'):
         sudo('cp SDK/lib/token/accenture-turner-dev.dat SDK/lib/token/domain_token.dat')
 
+
 @task
 def copy_token_sandbox():
     with cd('/product/apache2/demo44/'):
         sudo('cp SDK/lib/token/accenture-turner-sandbox.dat SDK/lib/token/domain_token.dat')
+
 
 @task
 def restart_apache():
@@ -72,7 +74,6 @@ def clear_cache():
     with cd('/product/varnish/bin/'):
         run('./varnishadm \'ban req.url ~ \".\"\'')
 
-     
 
 @task
 def ls():

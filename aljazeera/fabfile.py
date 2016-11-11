@@ -5,6 +5,7 @@ from fabric.context_managers import cd, settings
 
 initial_token_name = os.getenv('INITIAL_TOKEN_NAME')
 
+
 @task
 def test_user():
     sudo('whoami', user='custapache')
@@ -47,7 +48,7 @@ def fix_permissions():
 
 @task
 def copy_app():
-    with cd('/product/apache2/htdocs/'):        
+    with cd('/product/apache2/htdocs/'):
         sudo('rm -rf /product/apache2/htdocs/*.js')
         sudo('rm -rf /product/apache2/htdocs/*.html')
         sudo('rm -rf /product/apache2/htdocs/build/*')
@@ -63,7 +64,9 @@ def copy_app():
 @task
 def copy_token():
     with cd('/product/apache2/htdocs/'):
-        sudo('cp SDK/lib/token/'+initial_token_name+' SDK/lib/token/domain_token.dat')
+        sudo('cp SDK/lib/token/' + initial_token_name +
+             ' SDK/lib/token/domain_token.dat')
+
 
 @task
 def copy_conf_to_tmp():
@@ -71,10 +74,12 @@ def copy_conf_to_tmp():
         sudo('cp -r conf/ /tmp')
         sudo('tar -zcvf conf_{}_bkp.tar.gz /tmp/conf/'.format(make_timestamp()))
 
+
 @task
 def restore_conf_from_tmp():
     with cd('/product/apache2/htdocs/SDK/com/accenture/avs/sdk/conf/'):
         sudo('cp -r /tmp/conf/* .')
+
 
 @task
 def restart_apache():
@@ -86,7 +91,7 @@ def restart_apache():
 def clear_cache():
     with cd('/product/varnish/bin/'):
         run('./varnishadm \'ban req.url ~ \".\"\'')
-     
+
 
 @task
 def ls():
