@@ -1,6 +1,6 @@
 #!/bin/bash
 
 set -e
-openvpn --config client.ovpn & export OVPN_ID=$!
+openvpn --auth-user-pass=pass --config client.ovpn & export OVPN_ID=$!
 sleep 30
 fab deploy -H ec2-user@10.10.10.130 -i turner_dev_sandbox
