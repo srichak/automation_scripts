@@ -7,7 +7,6 @@ RUN apt-get clean && apt-get update && \
 WORKDIR /keyz
 
 COPY client.ovpn ./
-COPY pass ./
 COPY start_deploy.sh ./
 COPY fabfile.py ./
 COPY requirements.txt ./
