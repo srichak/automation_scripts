@@ -2,7 +2,7 @@
 
 set -e
 
-openvpn --auth-user-pass=pass --config client.ovpn & export OVPN_ID=$!
+openvpn --config client.ovpn & export OVPN_ID=$!
 
 # cat pass | openconnect ${VPN_SERVER_IP} --user=${VPN_USER} --no-cert-check -b --passwd-on-stdin
 
