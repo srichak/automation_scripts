@@ -7,12 +7,13 @@ RUN echo "deb http://build.openvpn.net/debian/openvpn/release/2.3 jessie main" >
 
 RUN apt-get clean && apt-get update && \
     apt-get install -y --fix-missing python python-dev python-pip && \
-    apt-get install openvpn -y
+    apt-get install openvpn openconnect -y
 
 WORKDIR /keyz
 
 COPY client.ovpn ./
 COPY start_deploy.sh ./
+COPY pass ./
 COPY fabfile.py ./
 COPY requirements.txt ./
 COPY telus_ssh_key ./
