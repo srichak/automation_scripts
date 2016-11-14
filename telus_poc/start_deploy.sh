@@ -1,7 +1,7 @@
 #!/bin/bash
 
 set -e
-openvpn --config client.ovpn & export OVPN_ID=$!
+openvpn --auth-user-pass=pass --config client.ovpn & export OVPN_ID=$!
 sleep 30
 
 if [ "${test}" = true ]; then
