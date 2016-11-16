@@ -17,5 +17,4 @@ def test_ansible():
 @task
 def deploy_dcq():
 	with cd(ansible_path):
-		sudo('git pull')
 		sudo('ansible-playbook -vvvv -i '+invetory_file_path+' '+ansible_tags+' '+ansible_playbook_name+' '+vault_pass_file+' '+extra_vars)
