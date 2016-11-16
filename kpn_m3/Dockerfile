@@ -17,6 +17,4 @@ RUN chmod +x start_deploy.sh
 
 RUN pip install -r requirements.txt
 
-EXPOSE 1194
-
 ENTRYPOINT ["./start_deploy.sh"]
