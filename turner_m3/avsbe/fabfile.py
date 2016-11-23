@@ -6,13 +6,14 @@ from fabric.context_managers import cd, settings
 
 @task
 def stop_jboss_be():
-    sudo('ps -ef | grep standalone_be.xml')
+    sudo('ps -u jboss -ef | grep standalone_be.xml')
     sudo('echo kill -i process')
 
 @task
 def get_package():
-    sudo('mkdir -p /tmp/avsbe-deployment', user='jboss')
-    put('AVS.war', '/tmp/avsbe-deployment')
+    run('mkdir -p /tmp/avsbe-deployments')
+    with cd('/tmp/avsbe-deployment'):
+      put('AVS.war', './')
 
 @task
 def make_timestamp():
@@ -26,7 +27,7 @@ def make_backup():
 @task
 def deploy_package():
     with cd('/product/jboss/standalone/deployments'):
-        sudo('echo cp /tmp/avsbe-deployment/AVS.war .', user='jboss')
+        sudo('echo cp /tmp/avsbe-deployment/AVS.war .')
         sudo('echo chown jboss AVS.war')
 
 @task
