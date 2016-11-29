@@ -1,0 +1,34 @@
+version: 1
+deployment_number: "${BUILD_NUMBER}" # Number of deployment for environment. Iterated by jenkins, YAML file saved in deployment repo
+steps:
+  - module: sql
+    target_hosts:
+      - auth
+      - be
+    files:
+      git_repo: "git@gitlab:Turner_M3/Backend.git" # Git repo url
+      git_ref: "master" # preferably tag name set by jenkins, i.e. v123
+      path:
+      - "sqlscripts/updateschema.sql"
+      - "sqlscripts/someother.sql"
+      rollback:
+      - "sqlscripts/updateschema_rollback.sql"
+  - module: configs
+    service: avsbe
+    target_hosts:
+      - boom
+    files:
+      git_repo: "git@gitlab:Turner_M3/Backend.git" # Git repo url
+      git_ref: "master" # preferably tag name set by jenkins, i.e. v123
+      path:
+        - src: "configs/BE_PROPERTIES"
+          dest: "{{ jboss_home }}/standalone/config"
+  - module: war
+    service: avsbe
+    target_hosts:
+      - auth
+    nexus:
+      - url: "avsbe-web-turner-4.4.17.3.war"
+        dest: "{{ jboss_home }}/modules"
+      - url: "avsbe-web-turner-4.4.17.3-libs.zip"
+        dest: "{{ jboss_home }}/standalone/deployments"
