@@ -49,7 +49,7 @@ def fix_permissions():
 @task
 def copy_app():
     with cd('/product/apache2/demo44/'):
-        sudo('rm -rf angular/ assets/ static/ index.html SDK/')
+        sudo('rm -rf angular/ assets/ static/ index.html Dockerfile httpd.conf SDK/')
         sudo('cp -r /tmp/dist/apache/* .')
 
 
