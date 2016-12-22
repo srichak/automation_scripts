@@ -78,3 +78,105 @@ print "Function complexity: " + functionComplexity
 print "File complexity: " + fileComplexity
 print "Duplications ratio: " + duplicationsRatio
 print "Duplicated lines: " + duplicatedLines
+
+fileOutput = open('report_new.html', "wb")
+
+fileOutput.write('<h1>SonarQube Results</h1>\n')
+fileOutput.write('<table border="0" style="width: 100%;">\n')
+fileOutput.write('<tr>\n')
+fileOutput.write('<td>\n')
+fileOutput.write('<h2>Summary</h2>\n')
+fileOutput.write('<div id="stepContainerSummary">\n')
+fileOutput.write('<table border="0">\n')
+fileOutput.write('<tr>\n')
+fileOutput.write(
+    '<td width="250" class="scenarioSuccess">Total issues: </td>\n')
+fileOutput.write(
+    '<td class="scenarioSuccessValue"><strong>' + totalIssues + '</strong></td>\n')
+fileOutput.write('</tr>\n')
+fileOutput.write('<tr>\n')
+fileOutput.write('<td class="scenarioSuccess">Blocker issues: </td>\n')
+fileOutput.write('<td class="scenarioSuccessValue"><strong>' +
+                    blockerIssues + '</strong></td>\n')
+fileOutput.write('</tr>\n')
+fileOutput.write('<tr>\n')
+fileOutput.write(
+    '<td class="scenarioSuccess">Critical issues: </td>\n')
+fileOutput.write('<td class="scenarioSuccessValue"><strong>' +
+                    criticalIssues + '</strong></td>\n')
+fileOutput.write('</tr>\n')
+fileOutput.write('<tr>\n')
+fileOutput.write('<td class="scenarioSuccess">Major issues: </td>\n')
+fileOutput.write(
+    '<td class="scenarioSuccessValue"><strong>' + majorIssues + '</strong></td>\n')
+fileOutput.write('</tr>\n')
+fileOutput.write('<tr>\n')
+fileOutput.write('<td class="scenarioSuccess">Minor issues: </td>\n')
+fileOutput.write(
+    '<td class="scenarioSuccessValue"><strong>' + minorIssues + '</strong></td>\n')
+fileOutput.write('</tr>\n')
+fileOutput.write('<tr>\n')
+fileOutput.write('<td class="scenarioSuccess">Info issues: </td>\n')
+fileOutput.write(
+    '<td class="scenarioSuccessValue"><strong>' + infoIssues + '</strong></td>\n')
+fileOutput.write('</tr>\n')
+fileOutput.write('<tr>\n')
+fileOutput.write('<td class="scenarioSuccess">Technical debt: </td>\n')
+fileOutput.write(
+    '<td class="scenarioSuccessValue"><strong>' + techDebt + '</strong></td>\n')
+fileOutput.write('</tr>\n')
+fileOutput.write('<tr>\n')
+fileOutput.write(
+    '<td class="scenarioSuccess">Technical debt ratio: </td>\n')
+fileOutput.write('<td class="scenarioSuccessValue"><strong>' +
+                    techDebtRatio + '</strong></td>\n')
+fileOutput.write('</tr>\n')
+fileOutput.write('<tr>\n')
+fileOutput.write(
+    '<td class="scenarioSuccess">Total lines of code: </td>\n')
+fileOutput.write(
+    '<td class="scenarioSuccessValue"><strong>' + totalLines + '</strong></td>\n')
+fileOutput.write('</tr>\n')
+fileOutput.write('<tr>\n')
+fileOutput.write(
+    '<td class="scenarioSuccess">Non commenting lines of code: </td>\n')
+fileOutput.write(
+    '<td class="scenarioSuccessValue"><strong>' + totalNCLOC + '</strong></td>\n')
+fileOutput.write('</tr>\n')
+fileOutput.write('<tr>\n')
+fileOutput.write(
+    '<td class="scenarioSuccess">Total complexity: </td>\n')
+fileOutput.write(
+    '<td class="scenarioSuccessValue"><strong>' + complexity + '</strong></td>\n')
+fileOutput.write('</tr>\n')
+fileOutput.write('<tr>\n')
+fileOutput.write(
+    '<td class="scenarioSuccess">Function complexity: </td>\n')
+fileOutput.write('<td class="scenarioSuccessValue"><strong>' +
+                    functionComplexity + '/function</strong></td>\n')
+fileOutput.write('</tr>\n')
+fileOutput.write('<tr>\n')
+fileOutput.write(
+    '<td class="scenarioSuccess">File complexity: </td>\n')
+fileOutput.write('<td class="scenarioSuccessValue"><strong>' +
+                    fileComplexity + '/file</strong></td>\n')
+fileOutput.write('</tr>\n')
+fileOutput.write('<tr>\n')
+fileOutput.write(
+    '<td class="scenarioSuccess">Duplications ratio: </td>\n')
+fileOutput.write('<td class="scenarioSuccessValue"><strong>' +
+                    duplicationsRatio + '</strong></td>\n')
+fileOutput.write('</tr>\n')
+fileOutput.write('<tr>\n')
+fileOutput.write(
+    '<td class="scenarioSuccess">Duplicated lines: </td>\n')
+fileOutput.write('<td class="scenarioSuccessValue"><strong>' +
+                    duplicatedLines + '</strong></td>\n')
+fileOutput.write('</tr>\n')
+fileOutput.write('</table>\n')
+fileOutput.write('</div>\n')
+fileOutput.write('</td>\n')
+fileOutput.write('</tr>\n')
+fileOutput.write('</table>\n')
+
+fileOutput.close()
