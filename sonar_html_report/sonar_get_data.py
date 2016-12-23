@@ -3,6 +3,7 @@ import os
 
 username = os.environ.get('USERNAME')
 password = os.environ.get('PASSWORD')
+project = os.environ.get('PROJECT')
 # print username
 # print password
 
@@ -81,7 +82,7 @@ print "Duplicated lines: " + duplicatedLines
 
 fileOutput = open('report_new.html', "wb")
 
-fileOutput.write('<h1>SonarQube Results</h1>\n')
+fileOutput.write('<h1>SonarQube Results for ' + project + ' project</h1>\n')
 fileOutput.write('<table border="0" style="width: 100%;">\n')
 fileOutput.write('<tr>\n')
 fileOutput.write('<td>\n')
