@@ -83,7 +83,7 @@ def restart_apache():
 @task
 def clear_cache():
     with cd('/product/varnish/bin/'):
-        run('./varnishadm \'ban req.url ~ \".\"\'')
+        sudo('./varnishadm \'ban req.url ~ \".\"\'')
 
 
 @task
