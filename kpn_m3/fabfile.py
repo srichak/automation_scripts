@@ -15,6 +15,6 @@ def test_ansible():
     sudo('ansible --list-hosts all')
 
 @task
-def deploy_dcq():
+def deploy():
 	with cd(ansible_path):
 		sudo('ansible-playbook -vvvv -i '+invetory_file_path+' '+ansible_tags+' '+ansible_playbook_name+' '+vault_pass_file+' '+extra_vars)
