@@ -1,8 +1,8 @@
 FROM debian:jessie
 
-RUN apt-get clean && apt-get update && \
+RUN apt-get clean && upgrade && apt-get update && \
 	apt-get install curl \
-	curl https://deb.nodesource.com/setup_6.x | -E bash – \
+	curl -sL https://deb.nodesource.com/setup_6.x | -E bash – \
     apt-get install -y nodejs \
 	npm install newman --global
 
