@@ -1,6 +1,6 @@
 FROM debian:jessie
 
-RUN apt-get clean && upgrade && apt-get update && \
+RUN apt-get clean && apt-get upgrade && apt-get update && \
 	apt-get install curl \
 	curl -sL https://deb.nodesource.com/setup_6.x | -E bash – \
     apt-get install -y nodejs \
