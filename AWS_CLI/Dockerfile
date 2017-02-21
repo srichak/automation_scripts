@@ -6,16 +6,15 @@ RUN apt-get clean && apt-get update && \
 
 WORKDIR /tmp
 
+COPY requirements.txt ./
+RUN pip install -r requirements.txt
 COPY start_deploy.sh ./
 COPY stopInstances.sh ./
-COPY requirements.txt ./
 COPY test.sh ./
 
 #ENV TERM=xterm
 RUN chmod +x start_deploy.sh
 
-RUN pip install -r requirements.txt
-
 #ENTRYPOINT ["./start_deploy.sh"]
-#ENTRYPOINT ["./stopInstances.sh"]
-ENTRYPOINT ["./test.sh"]
+ENTRYPOINT ["./stopInstances.sh"]
+#ENTRYPOINT ["./test.sh"]
