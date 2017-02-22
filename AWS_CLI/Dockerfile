@@ -19,6 +19,6 @@ ENV AWS_DEFAULT_OUTPUT=""
 
 RUN chmod +x start_deploy.sh
 
-#ENTRYPOINT ["./start_deploy.sh"]
-ENTRYPOINT ["./stopInstances.sh"]
+ENTRYPOINT ["./start_deploy.sh"]
+#ENTRYPOINT ["./stopInstances.sh"]
 #ENTRYPOINT ["./test.sh"]

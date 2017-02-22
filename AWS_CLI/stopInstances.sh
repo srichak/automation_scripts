@@ -1,6 +1,6 @@
 #!/bin/bash
 set -ex
-CUST=rh2chain
+CUST=${CUSTOMER_TAG}
 STATE=running
 
 for ASG in `aws autoscaling describe-auto-scaling-groups --query 'AutoScalingGroups[*].[AutoScalingGroupName]' --output=text | grep $CUST`; do
