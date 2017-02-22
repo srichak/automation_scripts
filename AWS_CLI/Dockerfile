@@ -10,6 +10,7 @@ COPY requirements.txt ./
 RUN pip install -r requirements.txt
 COPY start_deploy.sh ./
 COPY stopInstances.sh ./
+COPY startInstances.sh ./
 COPY test.sh ./
 
 ENV AWS_ACCESS_KEY_ID=""
