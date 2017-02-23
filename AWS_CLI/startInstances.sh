@@ -8,7 +8,7 @@ if [ -n "$CUST" ]; then
 
     for BOX in `aws ec2 describe-instances --filters "Name=tag:customer,Values=$CUST" "Name=instance-state-name,Values=$STATE" --query 'Reservations[*].Instances[*].[InstanceId]' --output text`; do
         echo "starting instance $BOX..";
-        aws start-instances-instances --instance-ids $BOX;
+        aws start-instances --instance-ids $BOX;
     done
 
     for ASG in `aws autoscaling describe-auto-scaling-groups --query 'AutoScalingGroups[*].[AutoScalingGroupName]' --output=text | grep $CUST`; do
