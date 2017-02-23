@@ -13,7 +13,7 @@ if [ -n "$CUST" ]; then
 
     for ASG in `aws autoscaling describe-auto-scaling-groups --query 'AutoScalingGroups[*].[AutoScalingGroupName]' --output=text | grep $CUST`; do
         echo "releasing auto-scaling group $ASG..";
-        aws autoscaling resume-processes-processes --auto-scaling-group-name $ASG;
+        aws autoscaling resume-processes --auto-scaling-group-name $ASG;
     done
 
 else
@@ -26,7 +26,7 @@ else
 
     for ASG in `aws autoscaling describe-auto-scaling-groups --query 'AutoScalingGroups[*].[AutoScalingGroupName]' --output=text`; do
         echo "releasing auto-scaling group $ASG..";
-      	aws autoscaling resume-processes-processes --auto-scaling-group-name $ASG;
+      	aws autoscaling resume-processes --auto-scaling-group-name $ASG;
     done
 
 fi
