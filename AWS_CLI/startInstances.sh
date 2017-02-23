@@ -5,6 +5,7 @@ STATE=stopped
 
 if [ -n "$CUST" ]; then
     # work with only specified environment
+    aws ec2 describe-instances --filters "Name=tag:customer,Values=$CUST" "Name=instance-state-name,Values=$STATE" --query 'Reservations[*].Instances[*].[InstanceId]' --output text
 
     for BOX in `aws ec2 describe-instances --filters "Name=tag:customer,Values=$CUST" "Name=instance-state-name,Values=$STATE" --query 'Reservations[*].Instances[*].[InstanceId]' --output text`; do
         echo "starting instance $BOX..";
