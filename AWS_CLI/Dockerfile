@@ -25,6 +25,8 @@ ENV AWS_DEFAULT_OUTPUT=""
 RUN chmod +x start_deploy.sh
 RUN chmod +x stopInstances.sh
 RUN chmod +x startInstances.sh
+RUN chmod +x dbservicedown.sh ./
+RUN chmod +x dbserviceup.sh ./
 RUN chmod 600 devops6sshkey.pem
 RUN chmod 600 devops4sshkey.pem
 
