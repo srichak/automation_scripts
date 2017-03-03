@@ -2,7 +2,7 @@ FROM ubuntu:latest
 
 RUN apt-get clean && apt-get update && \
     apt-get install -y --fix-missing python python-dev python-pip && \
-    pip install awscli 
+    pip install awscli ansible
 
 WORKDIR /tmp
 
@@ -16,6 +16,7 @@ COPY dbservicedown.sh ./
 COPY dbserviceup.sh ./
 COPY devops6sshkey.pem ./
 COPY devops4sshkey.pem ./
+COPY ansible.cfg /etc/ansible/ansible.cfg
 
 ENV AWS_ACCESS_KEY_ID=""
 ENV AWS_SECRET_ACCESS_KEY=""
@@ -29,6 +30,7 @@ RUN chmod +x dbservicedown.sh ./
 RUN chmod +x dbserviceup.sh ./
 RUN chmod 600 devops6sshkey.pem
 RUN chmod 600 devops4sshkey.pem
+RUN chmod 644 /etc/ansible/ansible.cfg
 
 ENTRYPOINT ["./start_deploy.sh"]
 #ENTRYPOINT ["./stopInstances.sh"]
