@@ -12,6 +12,8 @@ COPY start_deploy.sh ./
 COPY stopInstances.sh ./
 COPY startInstances.sh ./
 COPY test.sh ./
+COPY dbservicedown.sh ./
+COPY dbserviceup.sh ./
 COPY devops6sshkey.pem ./
 COPY devops4sshkey.pem ./
 
