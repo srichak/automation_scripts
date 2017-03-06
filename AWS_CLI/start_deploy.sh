@@ -1,6 +1,7 @@
 #!/bin/bash -x
 
-set -e
+#set -e
+echo "running: `cat /etc/hostname` `pwd`/$0"
 
 echo "Sending to instances command to "${SET_INSTANCES_STATUS}
 
