@@ -1,9 +1,8 @@
 FROM ubuntu:latest
 
 RUN apt-get clean && apt-get update && \
-    apt-get install -y --fix-missing python python-dev python-pip && \
-    apt-get remove python-crypto && \
-    pip install awscli ansible
+    apt-get install -y --fix-missing python python-dev python-pip ansible && \
+   pip install --upgrade pip awscli ansible
 
 WORKDIR /tmp
 
