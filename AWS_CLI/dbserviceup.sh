@@ -1,4 +1,5 @@
 #!/bin/bash
+export CUST=${CUSTOMER_TAG}
 
 # SSH Config Generating function
 sshconf() {
