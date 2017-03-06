@@ -10,7 +10,7 @@ if [[ $CUST = "devops6" ]]
 then
 # Getting bastion host IP
 bastion=`aws ec2 describe-instances --filters "Name=tag:customer,Values=devops6" "Name=tag:Name,Values=devops6ansible" --query 'Reservations[*].Instances[*].NetworkInterfaces[*].PrivateIpAddresses[*].Association.PublicIp' --output text`
-
+echo $bastion
 # Clearing temp ssh rules
 > /tmp/ssh
 
