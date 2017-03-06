@@ -30,6 +30,6 @@ RUN chmod +x dbserviceup.sh ./
 RUN chmod 600 devopssshkey.pem
 RUN chmod 644 /etc/ansible/ansible.cfg
 
-ENTRYPOINT ["/bin/bash -x ./start_deploy.sh"]
+ENTRYPOINT ["./start_deploy.sh"]
 #ENTRYPOINT ["./stopInstances.sh"]
 #ENTRYPOINT ["./test.sh"]
