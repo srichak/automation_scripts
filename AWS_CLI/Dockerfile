@@ -14,8 +14,7 @@ COPY startInstances.sh ./
 COPY test.sh ./
 COPY dbservicedown.sh ./
 COPY dbserviceup.sh ./
-COPY devops6sshkey.pem ./
-COPY devops4sshkey.pem ./
+COPY devopssshkey.pem ./
 COPY ansible.cfg /etc/ansible/ansible.cfg
 
 ENV AWS_ACCESS_KEY_ID=""
