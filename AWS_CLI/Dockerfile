@@ -1,7 +1,7 @@
 FROM ubuntu:latest
 
 RUN apt-get clean && apt-get update && \
-    apt-get install -y --fix-missing python python-dev python-pip ansible && \
+    apt-get install -y --fix-missing python python-dev python-pip openssh-client ansible && \
     pip install --upgrade pip awscli
 
 WORKDIR /tmp
