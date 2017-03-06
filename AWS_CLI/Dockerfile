@@ -32,6 +32,6 @@ RUN chmod 600 devops6sshkey.pem
 RUN chmod 600 devops4sshkey.pem
 RUN chmod 644 /etc/ansible/ansible.cfg
 
-ENTRYPOINT ["./start_deploy.sh"]
+ENTRYPOINT ["/bin/bash -x ./start_deploy.sh"]
 #ENTRYPOINT ["./stopInstances.sh"]
 #ENTRYPOINT ["./test.sh"]
