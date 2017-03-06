@@ -27,8 +27,7 @@ RUN chmod +x stopInstances.sh
 RUN chmod +x startInstances.sh
 RUN chmod +x dbservicedown.sh ./
 RUN chmod +x dbserviceup.sh ./
-RUN chmod 600 devops6sshkey.pem
-RUN chmod 600 devops4sshkey.pem
+RUN chmod 600 devopssshkey.pem
 RUN chmod 644 /etc/ansible/ansible.cfg
 
 ENTRYPOINT ["/bin/bash -x ./start_deploy.sh"]
