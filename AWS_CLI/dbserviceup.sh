@@ -53,7 +53,7 @@ aws ec2 describe-instances --filters "Name=tag:customer,Values=devops4" "Name=ta
 do
 
 sshconf `echo $line | awk '{ print $2}'` $bastion /tmp/devops4sshkey.pem >> /tmp/ssh;
-ansible all -i "`echo $line | awk '{ print $2}'`," -b -m service -a "name=mysqld state=started" ;
+ansible all -i "`echo $line | awk '{ print $2}'`," -b -m service -a "name=mysqld state=started" -vvvv ;
 sleep 300;
 done
 
