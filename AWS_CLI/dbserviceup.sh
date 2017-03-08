@@ -47,13 +47,21 @@ bastion=`aws ec2 describe-instances --filters "Name=tag:customer,Values=devops4"
 # Clearing temp ssh rules
 > /tmp/ssh
 
-
 # Starting Galera cluster instances in correct order
-aws ec2 describe-instances --filters "Name=tag:customer,Values=devops4" "Name=tag:Name,Values=devops4galera*" "Name=instance-state-name,Values=running" --query 'Reservations[*].Instances[*].[Tags[?Key==`Name`],NetworkInterfaces[*].PrivateIpAddresses[*].PrivateIpAddress]' --output text | awk '$1=$1' | sed -e 's/Name\ /Name=/g' | tr '\n' ' ' | sed -e 's/\Name=/\n/g' | awk '$1=$1' | sort -nk1 | while read line;
+aws ec2 describe-instances --filters "Name=tag:customer,Values=devops4" "Name=tag:galera_master,Values=tag_Role" "Name=instance-state-name,Values=running" --query 'Reservations[*].Instances[*].[Tags[?Key==`Name`],NetworkInterfaces[*].PrivateIpAddresses[*].PrivateIpAddress]' --output text | awk '$1=$1' | sed -e 's/Name\ /Name=/g' | tr '\n' ' ' | sed -e 's/\Name=/\n/g' | awk '$1=$1' | sort -nk1 | while read line;
 do
 
 sshconf `echo $line | awk '{ print $2}'` $bastion /tmp/devops4sshkey.pem >> /tmp/ssh;
-ansible all -i "`echo $line | awk '{ print $2}'`," -b -m service -a "name=mysqld state=started" -vvvv ;
+ansible all -i "`echo $line | awk '{ print $2}'`," -b -m shell -a "service mysqld start --wsrep-new-cluster" -u mysql --become ;
+sleep 300;
+done
+
+# Starting Galera cluster instances in correct order
+aws ec2 describe-instances --filters "Name=tag:customer,Values=devops4" "Name=tag:galera_slave,Values=tag_Role" "Name=instance-state-name,Values=running" --query 'Reservations[*].Instances[*].[Tags[?Key==`Name`],NetworkInterfaces[*].PrivateIpAddresses[*].PrivateIpAddress]' --output text | awk '$1=$1' | sed -e 's/Name\ /Name=/g' | tr '\n' ' ' | sed -e 's/\Name=/\n/g' | awk '$1=$1' | sort -nk1 | while read line;
+do
+
+sshconf `echo $line | awk '{ print $2}'` $bastion /tmp/devops4sshkey.pem >> /tmp/ssh;
+ansible all -i "`echo $line | awk '{ print $2}'`," -b -m service -a "name=mysqld state=started" ;
 sleep 300;
 done
 
