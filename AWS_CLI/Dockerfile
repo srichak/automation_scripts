@@ -11,6 +11,7 @@ RUN pip install -r requirements.txt
 COPY start_deploy.sh ./
 COPY stopInstances.sh ./
 COPY startInstances.sh ./
+COPY startDatabases.sh ./
 COPY test.sh ./
 COPY dbservicedown.sh ./
 COPY dbserviceup.sh ./
@@ -25,6 +26,7 @@ ENV AWS_DEFAULT_OUTPUT=""
 RUN chmod +x start_deploy.sh
 RUN chmod +x stopInstances.sh
 RUN chmod +x startInstances.sh
+RUN chmod +x startDatabases.sh
 RUN chmod +x dbservicedown.sh ./
 RUN chmod +x dbserviceup.sh ./
 RUN chmod 600 devopssshkey.pem
