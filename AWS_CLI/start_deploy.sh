@@ -9,8 +9,8 @@ if [ "${SET_INSTANCES_STATUS}" = start ]; then
     echo "Starting..."
     ./startDatabases.sh;
     sleep 120;
-    bash -x ./dbserviceup.sh;
-    ./startInstances.sh;
+#    bash -x ./dbserviceup.sh;
+#    ./startInstances.sh;
 else
     echo "Stoppping..."
     ./dbservicedown.sh ;
