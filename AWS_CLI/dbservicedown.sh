@@ -20,7 +20,6 @@ do
 
 sshconf `echo $line | awk '{ print $2}'` $bastion /tmp/devops6sshkey.pem >> /tmp/ssh;
 ansible all -i "`echo $line | awk '{ print $2}'`," -b -m service -a "name=mysqld state=stopped" ;
-sleep 300;
 done
 
 # Starting Magento DB instances in correct order
@@ -28,7 +27,6 @@ aws ec2 describe-instances --filters "Name=tag:customer,Values=devops6" "Name=ta
 do
 sshconf `echo $line | awk '{ print $2}'` $bastion /tmp/devops6sshkey.pem >> /tmp/ssh;
 ansible all -i "`echo $line | awk '{ print $2}'`," -b -m service -a "name=mysqld state=stopped" ;
-sleep 300;
 done
 
 # Starting Cassandra DB instances in correct order
@@ -36,7 +34,6 @@ aws ec2 describe-instances --filters "Name=tag:customer,Values=devops6" "Name=ta
 do
 sshconf `echo $line | awk '{ print $2}'` $bastion /tmp/devops6sshkey.pem >> /tmp/ssh;
 ansible all -i "`echo $line | awk '{ print $2}'`," -b -m service -a "name=cassandra state=stopped" ;
-sleep 300;
 done
 elif [[ $CUST = "devops4" ]]
 then
@@ -53,7 +50,6 @@ do
 
 sshconf `echo $line | awk '{ print $2}'` $bastion /tmp/devops4sshkey.pem >> /tmp/ssh;
 ansible all -i "`echo $line | awk '{ print $2}'`," -b -m service -a "name=mysqld state=stopped" ;
-sleep 300;
 done
 
 # Starting Magento DB instances in correct order
@@ -61,7 +57,6 @@ aws ec2 describe-instances --filters "Name=tag:customer,Values=devops4" "Name=ta
 do
 sshconf `echo $line | awk '{ print $2}'` $bastion /tmp/devops4sshkey.pem >> /tmp/ssh;
 ansible all -i "`echo $line | awk '{ print $2}'`," -b -m service -a "name=mysqld state=stopped" ;
-sleep 300;
 done
 
 # Starting Cassandra DB instances in correct order
@@ -69,6 +64,7 @@ aws ec2 describe-instances --filters "Name=tag:customer,Values=devops4" "Name=ta
 do
 sshconf `echo $line | awk '{ print $2}'` $bastion /tmp/devops4sshkey.pem >> /tmp/ssh;
 ansible all -i "`echo $line | awk '{ print $2}'`," -b -m service -a "name=cassandra state=stopped" ;
-sleep 300;
 done
 fi
+
+sleep 300;
