@@ -8,7 +8,7 @@ echo "Sending to instances command to "${SET_INSTANCES_STATUS}
 if [ "${SET_INSTANCES_STATUS}" = start ]; then
     echo "Starting..."
     ./startDatabases.sh;
-    sleep 300;
+    #sleep 300;
     bash -x ./dbserviceup.sh;
     ./startInstances.sh;
 else
