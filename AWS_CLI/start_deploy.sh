@@ -13,7 +13,7 @@ if [ "${SET_INSTANCES_STATUS}" = start ]; then
     ./startInstances.sh;
 else
     echo "Stoppping..."
-    ./dbservicedown.sh ;
+    [ -s devopssshkey.pem ] && ./dbservicedown.sh ;
      bash -x ./stopInstances.sh
 fi
 
