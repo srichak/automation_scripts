@@ -15,7 +15,7 @@ for customer in ${CUST//,/ }; do
 
 
     # Starting Galera cluster instances in correct order
-    aws ec2 describe-instances --filters "Name=tag:customer,Values${customer}" "Name=tag:Name,Values=${customer}galera*" "Name=instance-state-name,Values=running" --query 'Reservations[*].Instances[*].[Tags[?Key==`Name`],NetworkInterfaces[*].PrivateIpAddresses[*].PrivateIpAddress]' --output text | awk '$1=$1' | sed -e 's/Name\ /Name=/g' | tr '\n' ' ' | sed -e 's/\Name=/\n/g' | awk '$1=$1' | sort -rnk1 | while read line;
+    aws ec2 describe-instances --filters "Name=tag:customer,Values=${customer}" "Name=tag:Name,Values=${customer}galera*" "Name=instance-state-name,Values=running" --query 'Reservations[*].Instances[*].[Tags[?Key==`Name`],NetworkInterfaces[*].PrivateIpAddresses[*].PrivateIpAddress]' --output text | awk '$1=$1' | sed -e 's/Name\ /Name=/g' | tr '\n' ' ' | sed -e 's/\Name=/\n/g' | awk '$1=$1' | sort -rnk1 | while read line;
     do
 
         sshconf `echo $line | awk '{ print $2}'` $bastion /tmp/devopssshkey.pem >> /tmp/ssh;
