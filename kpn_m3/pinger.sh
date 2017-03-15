@@ -3,7 +3,7 @@ wait_time=10
 i=1
 repeat=3
 reached=false
-while [ $i -le $repeat ] && [ ! $reached ]; do 
+while [ $i -le $repeat ] && [ $reached=false ]; do 
 	echo "Ping attempt #${i}"  
 	if ! ping $1; then
 		reached=false
