@@ -1,5 +1,5 @@
 #!/bin/bash
-wait_time=5
+wait_time=10
 i=1
 repeat=3
 reached=false
