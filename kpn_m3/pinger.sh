@@ -1,7 +1,7 @@
 #!/bin/bash
 wait_time=10
 i=1
-repeat=3
+repeat=10
 reached=false
 while [ $i -le $repeat ] && [ $reached = false ]; do 
 	echo "Ping attempt #${i}"  
