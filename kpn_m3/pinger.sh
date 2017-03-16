@@ -5,7 +5,7 @@ repeat=10
 reached=false
 while [ $i -le $repeat ] && [ $reached = false ]; do 
 	echo "Ping attempt #${i}"  
-	if ! ping $1 -c 3; then
+	if [ ! ping 8.8.8.8 -c 2 ] || [ ! ping $1 -c 2 ]; then
 		reached=false
 		i=$((i+1))
 		echo "Ping failed!"
