@@ -3,7 +3,8 @@ set -ex
 CUST=${CUSTOMER_TAG}
 STATE=stopped
 
-# start database - Galera, Cassandra, Magento - servers
+# start databases - Galera, Cassandra, Magento - servers
+# start DNS servers - M2 component
 
 if [ -n "$CUST" ]; then
     for customer in ${CUST//,/ }; do
@@ -28,6 +29,15 @@ if [ -n "$CUST" ]; then
             echo "starting instance $BOX..";
             aws ec2 start-instances --instance-ids $BOX;
         done
+        # Starting M2 DNS servers
+        for BOX in `aws ec2 describe-instances --filters "Name=tag:customer,Values=${customer}" "Name=tag:AD-DNS1,Values=tag_Role" "Name=instance-state-name,Values=$STATE" --query 'Reservations[*].Instances[*].[InstanceId]' --output text`; do
+            echo "starting instance $BOX..";
+            aws ec2 start-instances --instance-ids $BOX;
+        done
+        for BOX in `aws ec2 describe-instances --filters "Name=tag:customer,Values=${customer}" "Name=tag:AD-DNS2,Values=tag_Role" "Name=instance-state-name,Values=$STATE" --query 'Reservations[*].Instances[*].[InstanceId]' --output text`; do
+            echo "starting instance $BOX..";
+            aws ec2 start-instances --instance-ids $BOX;
+        done
     done
 else
     # work with all environments
@@ -44,6 +54,15 @@ else
         aws ec2 start-instances --instance-ids $BOX;
     done
     for BOX in `aws ec2 describe-instances --filters "Name=tag:bookmark,Values=tag_Role" "Name=instance-state-name,Values=$STATE" --query 'Reservations[*].Instances[*].[InstanceId]' --output text`; do
+        echo "starting instance $BOX..";
+        aws ec2 start-instances --instance-ids $BOX;
+    done
+    # Starting M2 DNS servers
+    for BOX in `aws ec2 describe-instances --filters "Name=tag:AD-DNS1,Values=tag_Role" "Name=instance-state-name,Values=$STATE" --query 'Reservations[*].Instances[*].[InstanceId]' --output text`; do
+        echo "starting instance $BOX..";
+        aws ec2 start-instances --instance-ids $BOX;
+    done
+    for BOX in `aws ec2 describe-instances --filters "Name=tag:AD-DNS2,Values=tag_Role" "Name=instance-state-name,Values=$STATE" --query 'Reservations[*].Instances[*].[InstanceId]' --output text`; do
         echo "starting instance $BOX..";
         aws ec2 start-instances --instance-ids $BOX;
     done
