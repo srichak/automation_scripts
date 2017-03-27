@@ -25,9 +25,9 @@ else
         aws ec2 start-instances --instance-ids $BOX;
     done
 
-    for ASG in `aws autoscaling describe-auto-scaling-groups --query 'AutoScalingGroups[*].[AutoScalingGroupName]' --output=text`; do
-        echo "releasing auto-scaling group $ASG..";
-      	aws autoscaling resume-processes --auto-scaling-group-name $ASG;
-    done
+#    for ASG in `aws autoscaling describe-auto-scaling-groups --query 'AutoScalingGroups[*].[AutoScalingGroupName]' --output=text`; do
+#        echo "releasing auto-scaling group $ASG..";
+#      	aws autoscaling resume-processes --auto-scaling-group-name $ASG;
+#    done
 
 fi
