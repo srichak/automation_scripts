@@ -6,8 +6,8 @@ RUN apt-get clean && apt-get update && \
 
 WORKDIR /tmp
 
-COPY startAmbariInstances.sh
-COPY ambari_wrapper.sh
+COPY startAmbariInstances.sh ./
+COPY ambari_wrapper.sh ./
 
 ENV AWS_ACCESS_KEY_ID=""
 ENV AWS_SECRET_ACCESS_KEY=""
