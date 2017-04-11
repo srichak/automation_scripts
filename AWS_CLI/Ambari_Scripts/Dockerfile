@@ -6,8 +6,6 @@ RUN apt-get clean && apt-get update && \
 
 WORKDIR /tmp
 
-COPY requirements.txt ./
-RUN pip install -r requirements.txt
 COPY startAmbariInstances.sh
 COPY ambari_wrapper.sh
 
